@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation"
 export default function FloatingNav() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [mounted, setMounted] = useState(false) // ✅ NEW
+  const [mounted, setMounted] = useState(false)
 
   const pathname = usePathname()
 
@@ -23,18 +23,16 @@ export default function FloatingNav() {
   ]
 
   useEffect(() => {
-    setMounted(true) // ✅ Mark that we’re client-side
+    setMounted(true)
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
     window.addEventListener("scroll", handleScroll)
-    handleScroll() // ✅ Ensure correct value on first load
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  if (!mounted) {
-    return null // ✅ Don’t render until mounted to avoid mismatch
-  }
+  if (!mounted) return null
 
   return (
     <>
@@ -64,7 +62,7 @@ export default function FloatingNav() {
                   <motion.button
                     className={`w-14 h-14 rounded-2xl cursor-pointer flex items-center justify-center mb-3 last:mb-0 transition-all duration-300 group relative overflow-hidden ${
                       isActive
-                        ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg"
+                        ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-white shadow-lg"
                         : "text-gray-400 hover:text-white hover:bg-white/10"
                     }`}
                     whileHover={{ scale: 1.1 }}
@@ -74,7 +72,7 @@ export default function FloatingNav() {
 
                     {isActive && (
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl"
+                        className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-2xl"
                         layoutId="activeBackground"
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       />
@@ -103,7 +101,7 @@ export default function FloatingNav() {
         </motion.div>
       </motion.nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Toggle Button */}
       <motion.button
         initial={{ scale: 0, rotate: -180 }}
         animate={{ scale: 1, rotate: 0 }}
@@ -161,7 +159,7 @@ export default function FloatingNav() {
                       <motion.div
                         className={`flex flex-col items-center space-y-3 p-6 rounded-3xl transition-all duration-300 ${
                           isActive
-                            ? "bg-gradient-to-r from-blue-500 to-purple-500 text-white"
+                            ? "bg-gradient-to-r from-cyan-500 to-emerald-500 text-white"
                             : "bg-white/10 text-gray-300 hover:text-white hover:bg-white/20"
                         }`}
                         whileHover={{ scale: 1.05 }}
