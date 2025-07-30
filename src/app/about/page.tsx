@@ -45,7 +45,7 @@ export default function AboutPage() {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16">
+      <section className="pt-24 pb-16 mt-11">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-7xl font-black text-white mb-6">

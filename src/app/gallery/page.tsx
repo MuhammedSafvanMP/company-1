@@ -8,6 +8,7 @@ import { ExternalLink, Heart, Eye } from "lucide-react"
 import Image from "next/image"
 import FloatingNav from "@/components/floating-nav"
 import WhatsAppButton from "@/components/whatsapp-button"
+import Link from "next/link"
 
 export default function GalleryPage() {
   const [activeFilter, setActiveFilter] = useState("all")
@@ -99,7 +100,7 @@ export default function GalleryPage() {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16">
+      <section className="pt-24 pb-16 mt-11">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -190,6 +191,8 @@ export default function GalleryPage() {
                               <span className="text-sm">{project.views}</span>
                             </div>
                           </div>
+                          <Link href={`/gallery/${project.id}`} key={project.id}>
+
                           <Button
                             size="sm"
                             variant="outline"
@@ -197,6 +200,7 @@ export default function GalleryPage() {
                           >
                             <ExternalLink className="w-4 h-4" />
                           </Button>
+                          </Link>
                         </div>
                       </div>
                     </div>

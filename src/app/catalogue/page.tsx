@@ -1,15 +1,18 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Download, Eye, Star } from "lucide-react"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import Image from "next/image"
-import FloatingNav from "@/components/floating-nav"
-import WhatsAppButton from "@/components/whatsapp-button"
+import { motion } from "framer-motion";
+import { Download, Eye, Link, Star } from "lucide-react";
+import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import FloatingNav from "@/components/floating-nav";
+import WhatsAppButton from "@/components/whatsapp-button";
+import { useRouter } from "next/navigation";
 
 export default function CataloguePage() {
+    const router = useRouter();
+
   const catalogueItems = [
     {
       id: 1,
@@ -71,7 +74,7 @@ export default function CataloguePage() {
       featured: true,
       downloadUrl: "#",
     },
-  ]
+  ];
 
   return (
     <div className="min-h-screen bg-black">
@@ -79,7 +82,7 @@ export default function CataloguePage() {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16">
+      <section className="pt-24 pb-16 mt-11">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -104,7 +107,8 @@ export default function CataloguePage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Browse and download our comprehensive product catalogs and service brochures
+              Browse and download our comprehensive product catalogs and service
+              brochures
             </motion.p>
           </motion.div>
         </div>
@@ -139,34 +143,37 @@ export default function CataloguePage() {
                       </div>
                     )}
                     <div className="absolute bottom-4 left-4">
-                      <Badge variant="secondary" className="bg-black/50 text-white">
+                      <Badge
+                        variant="secondary"
+                        className="bg-black/50 text-white"
+                      >
                         {item.pages} Pages
                       </Badge>
                     </div>
                   </div>
                   <CardContent className="p-6 flex-1 flex flex-col">
                     <div className="flex-1">
-                      <Badge variant="outline" className="border-blue-400 text-blue-400 mb-3">
+                      <Badge
+                        variant="outline"
+                        className="border-blue-400 text-blue-400 mb-3"
+                      >
                         {item.category}
                       </Badge>
-                      <CardTitle className="text-xl text-white mb-3">{item.title}</CardTitle>
+                      <CardTitle className="text-xl text-white mb-3">
+                        {item.title}
+                      </CardTitle>
                       <p className="text-gray-400 mb-4">{item.description}</p>
                     </div>
                     <div className="flex gap-2">
-                      <Button
-                        size="sm"
-                        className="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                      >
-                        <Download className="w-4 h-4 mr-2" />
-                        Download
-                      </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="border-white/20 text-white hover:bg-white/10 bg-transparent"
-                      >
-                        <Eye className="w-4 h-4" />
-                      </Button>
+                        <Button
+                          size="sm"
+                                onClick={() => router.push(`/catalogue/${item.id}`)}
+
+                          className="flex items-center gap-1 flex-1 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                        >
+                          <Eye className="w-4 h-4" />
+                          View
+                        </Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -185,7 +192,9 @@ export default function CataloguePage() {
             transition={{ duration: 0.8 }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-white mb-4">How to Use Our Catalogs</h2>
+            <h2 className="text-3xl font-bold text-white mb-4">
+              How to Use Our Catalogs
+            </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
               Get the most out of our product catalogs with these simple steps
             </p>
@@ -196,12 +205,14 @@ export default function CataloguePage() {
               {
                 step: "01",
                 title: "Browse & Select",
-                description: "Choose the catalog that matches your project needs",
+                description:
+                  "Choose the catalog that matches your project needs",
               },
               {
                 step: "02",
                 title: "Download PDF",
-                description: "Click download to get the high-quality PDF catalog",
+                description:
+                  "Click download to get the high-quality PDF catalog",
               },
               {
                 step: "03",
@@ -218,10 +229,14 @@ export default function CataloguePage() {
               >
                 <div className="mb-4">
                   <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto">
-                    <span className="text-white font-bold text-lg">{step.step}</span>
+                    <span className="text-white font-bold text-lg">
+                      {step.step}
+                    </span>
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                <h3 className="text-xl font-semibold text-white mb-2">
+                  {step.title}
+                </h3>
                 <p className="text-gray-400">{step.description}</p>
               </motion.div>
             ))}
@@ -229,5 +244,5 @@ export default function CataloguePage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

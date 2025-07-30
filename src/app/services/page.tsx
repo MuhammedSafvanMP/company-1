@@ -81,7 +81,7 @@ export default function ServicesPage() {
       <WhatsAppButton />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16">
+      <section className="pt-24 pb-16 mt-11">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
